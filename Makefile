@@ -6,7 +6,7 @@ build:
 	docker build -t troeger/moodlerunner:$(VERSION) .
 
 run:
-	docker run -e RUNNER_URL -e RUNNER_KEY troeger/moodlerunner:$(VERSION)
+	docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID -e RUNNER_PREAMBLE troeger/moodlerunner:$(VERSION)
 
 # Prepare VirtualEnv by installing project dependencies
 venv/bin/activate: requirements.txt
