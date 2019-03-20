@@ -28,4 +28,3 @@ bumpversion:
 push: build
 	docker login --username=troeger
 	docker push troeger/moodlerunner:$(VERSION)
-
