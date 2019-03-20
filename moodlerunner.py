@@ -73,7 +73,7 @@ if __name__ == '__main__':
                     for submission in submissions:
                         # Check if submission was already validated, based on preamble
                         current_feedback = submission.load_feedback()
-                        if current_feedback.startswith(preamble):
+                        if current_feedback and current_feedback.startswith(preamble):
                             logger.info("Submission {0} was already validated, found preamble. Skipping it.".format(submission.id_))
                         else:
                             logger.info("Submission to be validated: {0}".format(submission))
