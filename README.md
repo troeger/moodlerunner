@@ -9,7 +9,7 @@ It relies on the [moodleteacher](https://github.com/troeger/moodleteacher) proje
 
 - Create a Moodle course.
 - Create a folder hidden from students inside that course to store validator scripts.
-- Create an assignment to be validated.
+- Create an assignment to be validated. Got to the setting *Feedback Types* and activate *Feedback comments* for the assignment.
 
 ### Step 2: Collect basic information
 
