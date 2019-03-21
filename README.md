@@ -26,7 +26,7 @@ All validator scripts must be stored in the hidden folder you created in Step 1.
 MoodleRunner comes as ready-to-use Docker container. The settings from Step 1 must be provided as environment variables:
 
 ```
-docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID -e RUNNER_PREAMBLE troeger/moodlerunner:0.1.3
+docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID -e RUNNER_PREAMBLE troeger/moodlerunner:0.1.4
 ```
 
 ## Mode of operation
