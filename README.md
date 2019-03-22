@@ -5,17 +5,23 @@ It relies on the [moodleteacher](https://github.com/troeger/moodleteacher) proje
 
 ## Quickstart
 
-### Step 1: Collecting basic information
+### Step 1: Prepare Moodle resources
+
+- Create a Moodle course.
+- Create a folder hidden from students inside that course to store validator scripts.
+- Create an assignment to be validated. Got to the setting *Feedback Types* and activate *Feedback comments* for the assignment.
+
+### Step 2: Collect basic information
 
 MoodleRunner needs some information for validating submissions in your Moodle course:
 
 - RUNNER_URL: The URL of your Moodle installation, e.g. `https://moodle.example.edu`.
 - RUNNER_KEY: A security token for accessing the Moodle API. Click on your picture in the right upper corner of the Moodle page, then go to *Preferences* -> *Security keys* and use the key for the *Moodle mobile web service*.
-- RUNNER_COURSE_ID: The ID of the Moodle course. You can find it in the URL of your course home page in Moodle, e.g. `123`when the URL is `https://moodle.example.edu/course/view.php?id=123`
-- RUNNER_FOLDER_ID: The ID of a hidden folder in the Moodle course. After creating it, click on the folder and take the ID from the URL, e.g. `432312` when the URL is `https://moodle.example.edu/mod/folder/view.php?id=432312`
+- RUNNER_COURSE_ID: The ID of the Moodle course you created in Step 1. You can find it in the URL of your course home page in Moodle, e.g. `123` when the URL is `https://moodle.example.edu/course/view.php?id=123`
+- RUNNER_FOLDER_ID: The ID of the hidden folder you created in Step 1. In the browser, click on the folder and take the ID from the URL, e.g. `432312` when the URL is `https://moodle.example.edu/mod/folder/view.php?id=432312`
 - RUNNER_PREAMBLE: A text that is put as preamble in each student feedback. MoodleRunner uses that text to figure out if a submission was already validated.
 
-### Step 2: Upload validators
+### Step 3: Upload validators
 
 MoodleRunner executes validator scripts and reports the result automatically to the student. Examples for validator scripts can be found [online](https://github.com/troeger/moodlerunner/tree/master/examples/).
 
@@ -23,7 +29,7 @@ All validator scripts must be stored in the hidden folder you created in Step 1.
 
 ### Step 3: Run docker container
 
-MoodleRunner comes as ready-to-use Docker container. The settings from Step 1 must be provided as environment variables:
+MoodleRunner comes as ready-to-use Docker container. The settings from Step 2 must be provided as environment variables:
 
 ```
 docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID -e RUNNER_PREAMBLE troeger/moodlerunner:0.1.5
