@@ -39,6 +39,16 @@ You can use the environment variable RUNNER_MODE to define a mode of operation:
 
 The default mode is 'cycleseconds_30'.
 
+## Local testing
+
+You can run the image locally and without any Moodle interaction, which is useful during the development of validators.
+
+Lets assume that the validator script to be tested lives in *./helloworld_java/validator.py*, while the example solution lives in *./helloworld_java/working/HelloWorld.java*: 
+
+```
+docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.4 test helloworld_java/validator.py helloworld_java/working/HelloWorld.java
+```
+
 ## Log level
 
 The log level can be changed with the environment variable RUNNER_LOG_LEVEL. Possible values are CRITICAL, ERROR, WARNING, INFO, and DEBUG. The default (for the moment) is DEBUG. 	
