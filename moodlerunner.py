@@ -7,7 +7,6 @@ from moodleteacher.files import MoodleFile
 from moodleteacher.submissions import MoodleSubmission
 from moodleteacher.assignments import MoodleAssignment
 
-
 import logging
 import os
 import time
@@ -95,7 +94,8 @@ if __name__ == '__main__':
 
         # Scan validator files in folder, determine according assignment and check if it has submissions
         for validator in validators_folder.files:
-            validator_assignment_name = validator.name.split('.')[0]
+            validator_assignment_name = os.path.splitext(validator.name)[0]
+            logger.debug("Searching for assignment with name '{0}'".format(validator_assignment_name))
             for assignment in assignments:
                 if assignment.name.strip().lower() == validator_assignment_name.strip().lower():
                     submissions = assignment.submissions()
@@ -115,6 +115,8 @@ if __name__ == '__main__':
                             job.start(log_level=log_level)
                             if mode == 'submission':
                                 exit(0)
+                else:
+                    logger.debug("Ignoring assignment '{0}', does not match validator name.".format(assignment.name))
                 if mode == 'assignment':
                     exit(0)
         if mode.startswith('cycleseconds_'):
