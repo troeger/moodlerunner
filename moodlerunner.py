@@ -95,28 +95,35 @@ if __name__ == '__main__':
         # Scan validator files in folder, determine according assignment and check if it has submissions
         for validator in validators_folder.files:
             validator_assignment_name = os.path.splitext(validator.name)[0]
-            logger.debug("Searching for assignment with name '{0}'".format(validator_assignment_name))
+            logger.debug("Searching for assignment with name '{0}'".format(
+                validator_assignment_name))
             for assignment in assignments:
                 if assignment.name.strip().lower() == validator_assignment_name.strip().lower():
                     submissions = assignment.submissions()
                     logger.info("Assignment {0} with {1} submissions has validators.".format(
                         assignment, len(submissions)))
                     for submission in submissions:
-                        # Check if submission was already validated, based on preamble
+                        # Reformulate preamble to use time stamp
+                        used_preamble = "<hr/><small>"
+                        for f in submission.files:
+                            used_preamble += " {0} ({1}) ".format(f.name, f.time_modified)
+                        used_preamble += "</small><hr/>" + preamble
+                        # Check if submission was already validated, based on enriched preamble
                         current_feedback = submission.load_feedback()
-                        if current_feedback and current_feedback.startswith(preamble):
-                            logger.info("Submission {0} was already validated, found preamble. Skipping it.".format(
+                        if current_feedback and current_feedback.startswith(used_preamble):
+                            logger.info("Submission {0} was already validated, found same preamble. Skipping it.".format(
                                 submission.id_))
                         else:
                             logger.info(
                                 "Submission to be validated: {0}".format(submission))
-                            job = Job(submission, validator, preamble=preamble)
+                            job = Job(submission, validator, preamble=used_preamble)
                             # Note: Log level for moodleteacher library is set to the same value as here
                             job.start(log_level=log_level)
                             if mode == 'submission':
                                 exit(0)
                 else:
-                    logger.debug("Ignoring assignment '{0}', does not match validator name.".format(assignment.name))
+                    logger.debug("Ignoring assignment '{0}', does not match validator name.".format(
+                        assignment.name))
                 if mode == 'assignment':
                     exit(0)
         if mode.startswith('cycleseconds_'):
