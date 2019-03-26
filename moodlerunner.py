@@ -62,7 +62,7 @@ if __name__ == '__main__':
     course_id = int(course_id)
     folder_id = check_env_var('RUNNER_FOLDER_ID', mandatory=True)
     folder_id = int(folder_id)
-    preamble = check_env_var('RUNNER_PREAMBLE', mandatory=True)
+    preamble = check_env_var('RUNNER_PREAMBLE', mandatory=False, default="")
     log_level = check_env_var('RUNNER_LOG_LEVEL', mandatory=False)
     if log_level:
         log_level = logging.getLevelName(log_level)

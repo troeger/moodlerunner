@@ -19,7 +19,6 @@ MoodleRunner needs some information for validating submissions in your Moodle co
 - RUNNER_KEY: A security token for accessing the Moodle API. Click on your picture in the right upper corner of the Moodle page, then go to *Preferences* -> *Security keys* and use the key for the *Moodle mobile web service*.
 - RUNNER_COURSE_ID: The ID of the Moodle course you created in Step 1. You can find it in the URL of your course home page in Moodle, e.g. `123` when the URL is `https://moodle.example.edu/course/view.php?id=123`
 - RUNNER_FOLDER_ID: The ID of the hidden folder you created in Step 1. In the browser, click on the folder and take the ID from the URL, e.g. `432312` when the URL is `https://moodle.example.edu/mod/folder/view.php?id=432312`
-- RUNNER_PREAMBLE: A text that is put as preamble in each student feedback. MoodleRunner uses that text to figure out if a submission was already validated.
 
 ### Step 3: Upload validators
 
@@ -32,7 +31,7 @@ All validator scripts must be stored in the hidden folder you created in Step 1.
 MoodleRunner comes as ready-to-use Docker container. The settings from Step 2 must be provided as environment variables:
 
 ```
-docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID -e RUNNER_PREAMBLE troeger/moodlerunner:0.1.8
+docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID troeger/moodlerunner:0.1.8
 ```
 
 ## Mode of operation
