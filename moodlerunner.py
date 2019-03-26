@@ -103,20 +103,19 @@ if __name__ == '__main__':
                     logger.info("Assignment {0} with {1} submissions has validators.".format(
                         assignment, len(submissions)))
                     for submission in submissions:
-                        # Reformulate preamble to use time stamp
-                        used_preamble = "<hr/><small>"
+                        tech_header = "<hr/><small>Validation {0}: ".format(validator.time_modified)
                         for f in submission.files:
-                            used_preamble += " {0} ({1}) ".format(f.name, f.time_modified)
-                        used_preamble += "</small><hr/>" + preamble
-                        # Check if submission was already validated, based on enriched preamble
+                            tech_header += "{0} ({1}) ".format(f.name, f.time_modified)
+                        tech_header += "</small><hr/>"
+                        # Check if submission was already validated, based on tech header
                         current_feedback = submission.load_feedback()
-                        if current_feedback and current_feedback.startswith(used_preamble):
-                            logger.info("Submission {0} was already validated, found same preamble. Skipping it.".format(
+                        if current_feedback and tech_header in current_feedback:
+                            logger.info("Submission {0} was already validated. Skipping it.".format(
                                 submission.id_))
                         else:
                             logger.info(
                                 "Submission to be validated: {0}".format(submission))
-                            job = Job(submission, validator, preamble=used_preamble)
+                            job = Job(submission, validator, preamble=tech_header + preamble)
                             # Note: Log level for moodleteacher library is set to the same value as here
                             job.start(log_level=log_level)
                             if mode == 'submission':
