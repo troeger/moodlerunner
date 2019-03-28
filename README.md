@@ -31,7 +31,7 @@ All validator scripts must be stored in the hidden folder you created in Step 1.
 MoodleRunner comes as ready-to-use Docker container. The settings from Step 2 must be provided as environment variables:
 
 ```
-docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID troeger/moodlerunner:0.1.11
+docker run -e RUNNER_URL -e RUNNER_KEY -e RUNNER_COURSE_ID -e RUNNER_FOLDER_ID troeger/moodlerunner:0.1.12
 ```
 
 ## Mode of operation
@@ -51,7 +51,7 @@ You can run the image locally and without any Moodle interaction, which is usefu
 Lets assume that the validator script to be tested lives in *./helloworld_java/validator.py*, while the example solution lives in *./helloworld_java/working/HelloWorld.java*: 
 
 ```
-docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.11 test helloworld_java/validator.py helloworld_java/working/HelloWorld.java
+docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.12 test helloworld_java/validator.py helloworld_java/working/HelloWorld.java
 ```
 
 ## Log level
