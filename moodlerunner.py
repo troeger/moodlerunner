@@ -63,6 +63,8 @@ if __name__ == '__main__':
     folder_id = check_env_var('RUNNER_FOLDER_ID', mandatory=True)
     folder_id = int(folder_id)
     preamble = check_env_var('RUNNER_PREAMBLE', mandatory=False, default="")
+    verify_ssl = check_env_var('RUNNER_VERIFY_SSL', mandatory=False, default=True)
+    verify_ssl = bool(verify_ssl)
     log_level = check_env_var('RUNNER_LOG_LEVEL', mandatory=False)
     if log_level:
         log_level = logging.getLevelName(log_level)
@@ -76,7 +78,7 @@ if __name__ == '__main__':
 
     logger.info("Connecting to Moodle at {0} ...".format(url))
     conn = MoodleConnection(moodle_host=url,
-                            token=key, interactive=False)
+                            token=key, interactive=False, verify_ssl=verify_ssl)
 
     while(True):
         # Get assignments for this course from Moodle server
