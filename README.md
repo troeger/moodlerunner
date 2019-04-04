@@ -22,7 +22,7 @@ MoodleRunner needs some information for validating submissions in your Moodle co
 
 ### Step 3: Upload validators
 
-MoodleRunner executes validator scripts and reports the result automatically to the student. Examples for validator scripts can be found [online](https://github.com/troeger/moodlerunner/tree/master/examples/).
+MoodleRunner executes validator scripts and reports the result automatically to the student. Examples for validator scripts can be found [online](https://github.com/troeger/moodlerunner/tree/master/examples/). There is also an [extensive documentation](https://moodleteacher.readthedocs.io/en/latest/tutorial_validation.html) about validators from the underlying [MoodleTeacher](https://github.com/troeger/moodleteacher) library.
 
 All validator scripts must be stored in the hidden folder you created in Step 1. The filename must match to the title of the assignment to be validated, e.g. if the assignment is named "Hello World in C", then your validator must be named "Hello World in C.py".
 
