@@ -1,7 +1,6 @@
 # moodlerunner
 
 This project provides a Docker image for automated validation of student submissions in Moodle.
-It relies on the [moodleteacher](https://github.com/troeger/moodleteacher) project.
 
 ## Quickstart
 
