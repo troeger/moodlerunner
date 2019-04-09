@@ -115,9 +115,13 @@ if __name__ == '__main__':
                         else:
                             logger.info(
                                 "Submission to be validated: {0}".format(submission))
-                            job = Job(submission, validator, preamble=tech_header + preamble)
-                            # Note: Log level for moodleteacher library is set to the same value as here
-                            job.start(log_level=log_level)
+                            try:
+                                job = Job(submission, validator, preamble=tech_header + preamble)
+                                # Note: Log level for moodleteacher library is set to the same value as here
+                                job.start(log_level=log_level)
+                            except Exception as e:
+                                logger.error("Validation crashed:")
+                                logger.exception(e)
                             if mode == 'submission':
                                 exit(0)
                 else:
