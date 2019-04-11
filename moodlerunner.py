@@ -35,6 +35,9 @@ def check_env_var(name, mandatory, default=None):
 
 
 def test_mode(validator_fname, submission_fname):
+    if "RUNNER_PDB" in os.environ:
+        import pdb
+        pdb.set_trace()
     conn = MoodleConnection(is_fake=True)
     course = MoodleCourse(conn=conn, course_id=1)
     assignment = MoodleAssignment(
