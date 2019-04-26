@@ -8,7 +8,7 @@ RUN apk update && \
 
 ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/bin"
 
-RUN pip3 install moodleteacher==0.1.10
+RUN pip3 install moodleteacher==0.1.11
 
 COPY moodlerunner.py /
 
