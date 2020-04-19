@@ -11,6 +11,7 @@ import logging
 import os
 import time
 import sys
+import datetime
 
 handler = logging.StreamHandler(sys.stdout)
 handler.setLevel(logging.DEBUG)
@@ -108,7 +109,7 @@ if __name__ == '__main__':
                     for submission in submissions:
                         tech_header = "Validation {0}: ".format(validator.time_modified)
                         for f in submission.files:
-                            tech_header += "{0} ({1}) ".format(f.name, f.time_modified)
+                            tech_header += "{0} ({1}) ".format(f.name,  str(datetime.datetime.fromtimestamp(f.time_modified)))
                         tech_header_html = "<hr/><small>" + tech_header + "</small><hr/>"
                         # Check if submission was already validated, based on tech header
                         current_feedback = submission.load_feedback()
