@@ -102,7 +102,7 @@ if __name__ == '__main__':
                 validator_assignment_name))
             for assignment in assignments:
                 if assignment.name.strip().lower() == validator_assignment_name.strip().lower():
-                    submissions = assignment.submissions()
+                    submissions = assignment.submissions(must_have_files=True)
                     logger.info("Assignment {0} with {1} submissions has validators.".format(
                         assignment, len(submissions)))
                     for submission in submissions:
