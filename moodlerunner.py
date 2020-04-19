@@ -106,10 +106,10 @@ if __name__ == '__main__':
                     logger.info("Assignment {0} with {1} submissions has validators.".format(
                         assignment, len(submissions)))
                     for submission in submissions:
-                        tech_header = "<hr/><small>Validation {0}: ".format(validator.time_modified)
+                        tech_header = "Validation {0}: ".format(validator.time_modified)
                         for f in submission.files:
                             tech_header += "{0} ({1}) ".format(f.name, f.time_modified)
-                        tech_header += "</small><hr/>"
+                        tech_header_html = "<hr/><small>" + tech_header + "</small><hr/>"
                         # Check if submission was already validated, based on tech header
                         current_feedback = submission.load_feedback()
                         if current_feedback and tech_header in current_feedback:
@@ -119,7 +119,7 @@ if __name__ == '__main__':
                             logger.info(
                                 "Submission to be validated: {0}".format(submission))
                             try:
-                                job = Job(submission, validator, preamble=tech_header + preamble)
+                                job = Job(submission, validator, preamble=tech_header_html + preamble)
                                 # Note: Log level for moodleteacher library is set to the same value as here
                                 job.start(log_level=log_level)
                             except Exception as e:
