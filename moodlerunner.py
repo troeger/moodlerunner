@@ -12,6 +12,7 @@ import os
 import time
 import sys
 import datetime
+from pytz import timezone
 
 handler = logging.StreamHandler(sys.stdout)
 handler.setLevel(logging.DEBUG)
@@ -66,6 +67,8 @@ if __name__ == '__main__':
     course_id = int(course_id)
     folder_id = check_env_var('RUNNER_FOLDER_ID', mandatory=True)
     folder_id = int(folder_id)
+    tz = check_env_var('RUNNER_TIMEZONE', mandatory=False, default="UTC")
+    configured_tz = timezone(tz)
     preamble = check_env_var('RUNNER_PREAMBLE', mandatory=False, default="")
     log_level = check_env_var('RUNNER_LOG_LEVEL', mandatory=False)
     if log_level:
@@ -109,7 +112,8 @@ if __name__ == '__main__':
                     for submission in submissions:
                         tech_header = "Validation {0}: ".format(validator.time_modified)
                         for f in submission.files:
-                            tech_header += "{0} ({1}) ".format(f.name,  str(datetime.datetime.fromtimestamp(f.time_modified)))
+                            local_time = datetime.datetime.fromtimestamp(f.time_modified, configured_tz)
+                            tech_header += "{0} ({1}) ".format(f.name, local_time.strftime("%Y-%m-%d %H:%M:%d"))
                         tech_header_html = "<hr/><small>" + tech_header + "</small><hr/>"
                         # Check if submission was already validated, based on tech header
                         current_feedback = submission.load_feedback()
