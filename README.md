@@ -19,6 +19,10 @@ MoodleRunner needs some information for validating submissions in your Moodle co
 - RUNNER_COURSE_ID: The ID of the Moodle course you created in Step 1. You can find it in the URL of your course home page in Moodle, e.g. `123` when the URL is `https://moodle.example.edu/course/view.php?id=123`
 - RUNNER_FOLDER_ID: The ID of the hidden folder you created in Step 1. In the browser, click on the folder and take the ID from the URL, e.g. `432312` when the URL is `https://moodle.example.edu/mod/folder/view.php?id=432312`
 
+You can also set the following variables, if you like:
+
+- RUNNER_TIMEZONE: Timezone used when showing the file modification date in student feedback. Should be set to the same value as your Moodle installation, e.g. "Europe/Berlin". Default is "UTC".
+
 ### Step 3: Upload validators
 
 MoodleRunner executes validator scripts and reports the result automatically to the student. Examples for validator scripts can be found [online](https://github.com/troeger/moodlerunner/tree/master/examples/). There is also an [extensive documentation](https://moodleteacher.readthedocs.io/en/latest/tutorial_validation.html) about validators from the underlying [MoodleTeacher](https://github.com/troeger/moodleteacher) library.
