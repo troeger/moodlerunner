@@ -56,7 +56,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'test':
         logger.info("Running in local test mode ...")
         if len(sys.argv) != 4:
-            print("Usage: docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.27 test <validator file> <submission file>")
+            print("Usage: docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.28 test <validator file> <submission file>")
             exit(-1)
         test_mode('/hostdir/' + sys.argv[2], '/hostdir/' + sys.argv[3])
         exit(0)
