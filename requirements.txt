@@ -1,3 +1,5 @@
 moodleteacher==0.1.15
 bumpversion
 pytz
+twisted
+
