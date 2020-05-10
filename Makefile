@@ -23,7 +23,7 @@ ifndef VIRTUAL_ENV
 endif
 
 bumpversion:
-	bumpversion --verbose patch
+	venv/bin/bumpversion --verbose patch
 
 push: build
 	docker login --username=troeger
