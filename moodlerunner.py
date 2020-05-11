@@ -132,11 +132,14 @@ if __name__ == '__main__':
                                 logger.exception(e)
                             if mode == 'submission':
                                 exit(0)
+                    if mode == 'assignment':
+                        exit(0)
                 else:
                     logger.debug("Ignoring assignment '{0}', does not match validator name.".format(
                         assignment.name))
-                if mode == 'assignment':
-                    exit(0)
+            if mode == 'assignment':
+                logger.error("Could not find assignment with name matching to the validator. Exiting.")
+                exit(0)
         if mode.startswith('cycleseconds_'):
             timeout = int(mode.split('_')[1])
             logger.debug("Sleeping for {0} seconds ...".format(timeout))
