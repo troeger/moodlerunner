@@ -1,12 +1,16 @@
 # Dockerfile for Moodlerunner
 
-FROM alpine
+FROM ubuntu
 
-RUN apk update && \
-    apk add python3 python3-dev gcc g++ libc-dev make autoconf openjdk8 && \
-    rm -rf /var/cache/apk/*
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
+ENV LANG en_US.utf8
 
-ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/bin"
+# Prepare Apache environment
+RUN apt-get update \
+    && apt-get install -y locales python3 python3-pip vim python3-dev gcc g++ libc-dev make autoconf openjdk-8-jdk \
+    && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 COPY requirements.txt /
 RUN pip3 install -r requirements.txt
