@@ -54,7 +54,7 @@ You can run the image locally and without any Moodle interaction, which is usefu
 Lets assume that the validator script to be tested lives in *./helloworld_java/validator.py*, while the example solution lives in *./helloworld_java/working/HelloWorld.java*: 
 
 ```
-docker run --mount type=bind,src=$(PWD),dst=/hostdir troeger/moodlerunner:0.1.32 test helloworld_java/validator.py helloworld_java/working/HelloWorld.java
+docker run --mount type=bind,src="$(PWD)",dst=/hostdir troeger/moodlerunner:0.1.32 test helloworld_java/validator.py helloworld_java/working/HelloWorld.java
 ```
 
 ## Log level
